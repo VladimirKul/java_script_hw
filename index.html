@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        console.log("1. С помощью цикла while вывести все простые числа в промежутке от 0 до 100 (УТОЧНИТЬ НАСЧЕТ ПРОСТЫХ ЧИСЕЛ)")
+        let arr = []
+        for (let i = 2; i <= 100; i++) {
+            let j = 2
+            while (i % j != 0 && j < i) j++
+                if (j == i) arr.push(i)
+        }
+        console.log("Ответ: " + arr)
+        console.log("2. С этого урока начинаем работать с функционалом интернет-магазина. Предположим, есть сущность корзины. Нужно реализовать функционал подсчета стоимости корзины в зависимости от находящихся в ней товаров.")
+        let bas = []
+        let goods = []
+
+        function addGoods() {
+            let article
+            do {
+                article = prompt("Введите название товара")
+                if (article == null) {
+                    let conf = confirm("Отменить ввод товара?")
+                    if (conf)
+                        return 0
+                }
+            }
+            while (article == "" || article == null)
+
+            let price
+            do {
+                price = prompt("Введите цену товара")
+                if (price == null) {
+                    let conf = confirm("Отменить ввод товара?")
+                    if (conf)
+                        return 0
+                }
+                Number(price)
+            }
+            while (price == 0 || isNaN(price) || price == null)
+
+            let count
+            do {
+                count = prompt("Введите количество товара")
+                if (count == null) {
+                    let conf = confirm("Отменить ввод товара?")
+                    if (conf)
+                        return 0
+                }
+                Number(count)
+            }
+            while (count == 0 || isNaN(count) || count == null)
+
+            let total_price = price * count
+            goods.push(article, price, count, total_price)
+            return goods
+        }
+
+        function addBas() {
+            let res = 0
+            let conf = confirm("Добавить товар в корзину?")
+            if (conf) {
+                addGoods()
+                if (goods == 0) {
+                    return res
+                }
+                bas.push(goods)
+                console.log(bas.length + " | " + goods[0] + " | " + goods[1] + "p. | " + goods[2] + " (кол-во) | " + " Общая сумма: " + goods[3])
+                goods = []
+                addBas()
+            } else {
+                for (let j = 0; j < bas.length; j++) {
+                    res += bas[j][3]
+                }
+                console.log("Общая сумма: " + res)
+            }
+        }
+
+        console.log("В корзине:")
+        addBas()
+        console.log("3. Практикум. Угадай число (БЕЗ ЦИКЛОВ) - рекурсия")
+
+        let numGen = () => Math.floor(Math.random() * 9999) + 1
+        let machinNum = numGen()
+        let i = 0;
+
+        function work() {
+            var myNum = +prompt("Введите четырехзначное число")
+            if (myNum > 9999) {
+                alert("Нужно вводить только четырехзначные числа!")
+                work()
+            } else {
+                if (myNum < machinNum && myNum != 0) {
+                    alert("Машина загадала число, которое больше, чем ввел человек. Число попыток :" + ++i)
+                    work()
+                } else if (myNum > machinNum && myNum != 0) {
+                    alert("Машина загадала число, которое меньше, чем ввел человек. Число попыток: " + ++i)
+                    work()
+                } else if (isNaN(myNum)) {
+                    alert("Вы ввели не число!")
+                    work()
+                } else if (myNum == machinNum) {
+                    alert("Человек победил! Количество попыток: " + i)
+                    machinNum = numGen()
+                    i = 0;
+                    alert("Машина загадала новое число!")
+                    work()
+                } else {
+                    alert("Game Over")
+                }
+            }
+        }
+        work()
+
+        console.log("4.*Вывести с помощью цикла for числа от 0 до 9, не используя тело цикла.")
+        for (let i = 0; i < 10; console.log(i), i++) {}
+        console.log("5) *Нарисовать пирамиду с помощью console.log, как показано на рисунке, только у вашей пирамиды должно быть 20 рядов, а не 5:")
+        let x = "x"
+        let res = ""
+        for (i = 1; i <= 20; i++) {
+            res += x
+            console.log(res)
+        }
+    </script>
+</body>
+
+</html>
