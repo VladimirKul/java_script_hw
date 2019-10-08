@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		const NAMES = ["КЕК", "ЛОЛ", "ЧЕБУРЕК"]
+		const PRICES = [100, 200, 300]
+		const COUNT = [5, 5, 5]
+		const ID = [1, 2, 3]
+
+		let store = {
+			catalog: [],
+			
+			fillCatalog: function () {
+				NAMES.forEach((item, index) => {
+					this.catalog.push(this.addObj(NAMES[index], PRICES[index], COUNT[index], ID[index]))
+				})
+				return this.catalog	
+			},
+
+			addObj: function (nam, pric, coun, di) {
+				return {
+					names: nam,
+					prices: pric,
+					count: coun,
+					id: di
+				}	
+			}
+
+		}
+	</script>
+</body>
+</html>
