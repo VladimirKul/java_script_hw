@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        #area {
+            width: 420px;
+            margin: 0 auto;
+            margin-top: 5%;
+        }
+        
+        #area::after {
+            content: "";
+            display: block;
+            width: 400px;
+            clear: both;
+        }
+        
+        .white {
+            background-color: #fff;
+            width: 50px;
+            height: 50px;
+            border: solid 1px #000;
+            float: left;
+        }
+        
+        .black {
+            background-color: #000;
+            width: 50px;
+            height: 50px;
+            border: solid 1px #000;
+            float: left;
+        }
+        
+        input[value="НАЖМИ"] {
+            display: block;
+            width: 100px;
+            margin: 0 auto;
+            margin-top: 10%;
+        }
+    </style>
+</head>
+<input type="button" onclick="quer()" value="НАЖМИ">
+<div id="area" class="ar">
+</div>
+
+<body>
+    <script>
+        let area = document.getElementById("area")
+
+        let white_rook = "<img src='img/wR.png' width='50' height='50'>"
+        let white_knight = "<img src='img/wN.png' width='50' height='50'>"
+        let white_bishop = "<img src='img/wB.png' width='50' height='50'>"
+        let white_king = "<img src='img/wK.png' width='50' height='50'>"
+        let white_queen = "<img src='img/wQ.png' width='50' height='50'>"
+        let white_pawn = "<img src='img/wP.png' width='50' height='50'>"
+
+        let black_rook = "<img src='img/bR.png' width='50' height='50'>"
+        let black_knight = "<img src='img/bN.png' width='50' height='50'>"
+        let black_bishop = "<img src='img/bB.png' width='50' height='50'>"
+        let black_king = "<img src='img/bK.png' width='50' height='50'>"
+        let black_queen = "<img src='img/bQ.png' width='50' height='50'>"
+        let black_pawn = "<img src='img/bP.png' width='50' height='50'>"
+
+        let fill_area_arr = () => { //ф-ция для заполнения массива area_arr и его возврата из функции
+            let area_arr = [] //массив, в котором содержится вся доска для шахмат
+            let space = "<br>"
+            for (let i = 1; i <= 8; i++) { //цикл для заполнения массива area_arr СТРОКАМИ
+                if (i % 2 != 0) { //условие для проверки четных/нечетных СТРОК, для того, что бы можно было заполнять массив построчно (чередуя четные нечетные, потому что каждая строка начинается с чередующейся ячейкой (белая/черная))
+                    let line_arr = []
+                    for (let cell = 1; cell <= 8; cell++) { //цикл для заполнения СТРОК ячейками
+                        if (cell % 2 != 0) { //условие для проверки четных/нечетных ЯЧЕЕК, для того, что бы можно было заполнять СТРОКУ поэлементно
+                            line_arr.push('<div class="black" id="' + i + "" + cell + '"></div>') //для того, что бы каждой ЯЧЕЙКЕ назначить свой id
+                        } else { //четные ячейки
+                            line_arr.push('<div class="white" id="' + i + "" + cell + '"></div>') //разобрался как работает ${i} уже после того, как сделал задание, переделывать лень
+                        } //////////////////////////////////////////////////////////////////////////в галерее уже пользовался этим способом
+                    }
+                    line_arr.push(space) //после заполнения строки ячейками разрываем строку
+                    area_arr.push(line_arr) //все хранится в одном массиве
+                } else { //Четные строки
+                    let line_arr = []
+                    for (let cell = 1; cell <= 8; cell++) {
+                        if (cell % 2 != 0) {
+                            line_arr.push('<div class="white" id="' + i + "" + cell + '"></div>')
+                        } else { //четные ячейки
+                            line_arr.push('<div class="black" id="' + i + "" + cell + '"></div>')
+                        }
+                    }
+                    line_arr.push(space) //после заполнения строки ячейками разрываем строку
+                    area_arr.push(line_arr) //все хранится в одном массиве
+                }
+            }
+            return area_arr //наш массив готов
+        }
+
+        let reverse = () => { //ф-ция для переворота массива, это нужно для вывода на экран нашей шахматной доски. т.к массив нумеруется сверху, а по правилам шахмат нужно снизу
+            let mass = fill_area_arr()
+            arr_reverse = mass.reverse()
+            return arr_reverse //возвращаем наш перевернутый массив
+        }
+
+        let fill_area = () => { //ф-ция для записи массива в одну строковую переменную res, которую мы будем возвращать из ф-ции
+            let arr = reverse()
+            let res = ""
+            for (i = 0; i < 8; i++) {
+                let string_line = ""
+                for (j = 0; j <= 8; j++) {
+                    string_line += arr[i][j]
+                }
+                res += string_line
+            }
+            return res
+        }
+
+        let quer = () => {
+            el = document.getElementById("11")
+            el.innerHTML = white_rook
+            el = document.getElementById("12")
+            el.innerHTML = white_knight
+            el = document.getElementById("13")
+            el.innerHTML = white_bishop
+            el = document.getElementById("14")
+            el.innerHTML = white_king
+            el = document.getElementById("15")
+            el.innerHTML = white_queen
+            el = document.getElementById("16")
+            el.innerHTML = white_bishop
+            el = document.getElementById("17")
+            el.innerHTML = white_knight
+            el = document.getElementById("18")
+            el.innerHTML = white_rook
+            el = document.getElementById("21")
+            el.innerHTML = white_pawn
+            el = document.getElementById("22")
+            el.innerHTML = white_pawn
+            el = document.getElementById("23")
+            el.innerHTML = white_pawn
+            el = document.getElementById("24")
+            el.innerHTML = white_pawn
+            el = document.getElementById("25")
+            el.innerHTML = white_pawn
+            el = document.getElementById("26")
+            el.innerHTML = white_pawn
+            el = document.getElementById("27")
+            el.innerHTML = white_pawn
+            el = document.getElementById("28")
+            el.innerHTML = white_pawn
+
+            el = document.getElementById("81")
+            el.innerHTML = black_rook
+            el = document.getElementById("82")
+            el.innerHTML = black_knight
+            el = document.getElementById("83")
+            el.innerHTML = black_bishop
+            el = document.getElementById("84")
+            el.innerHTML = black_king
+            el = document.getElementById("85")
+            el.innerHTML = black_queen
+            el = document.getElementById("86")
+            el.innerHTML = black_bishop
+            el = document.getElementById("87")
+            el.innerHTML = black_knight
+            el = document.getElementById("88")
+            el.innerHTML = black_rook
+            el = document.getElementById("71")
+            el.innerHTML = black_pawn
+            el = document.getElementById("72")
+            el.innerHTML = black_pawn
+            el = document.getElementById("73")
+            el.innerHTML = black_pawn
+            el = document.getElementById("74")
+            el.innerHTML = black_pawn
+            el = document.getElementById("75")
+            el.innerHTML = black_pawn
+            el = document.getElementById("76")
+            el.innerHTML = black_pawn
+            el = document.getElementById("77")
+            el.innerHTML = black_pawn
+            el = document.getElementById("78")
+            el.innerHTML = black_pawn
+        }
+
+        let fill_arr = fill_area_arr()
+        let res = fill_area()
+        let body = document.getElementsByTagName("body")
+        area.innerHTML = res
+    </script>
+</body>
+
+</html
