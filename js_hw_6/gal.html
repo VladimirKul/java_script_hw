@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+  <style>
+    #main_pic {
+      width: 150px;
+      height: 150px;
+      border: solid 1px #000;
+      background-color: red;
+    }   
+    #roul {
+      width: 260px;
+      height: 50px;
+      border: solid 1px #000;
+    }
+    .pic_0 {
+      background-color: red;
+    }
+    .pic_1 {
+      background-color: white;
+    }
+    .pic_2 {
+      background-color: black;
+    }
+    .pic_3 {
+      background-color: blue;
+    }
+    .pic_4 {
+      background-color: green;
+    }
+    .smile_pic {
+      display: block;
+      float: left;
+      width: 50px;
+      height: 50px;
+      border: solid 1px #000;
+    }
+    
+    .big_pic {
+      width: 150px;
+      height: 150px;
+    }
+  </style>
+</head>
+<body>
+  <div id="main_pic"><div id="0"></div></div>
+  <div id="roul"></div>
+  <input type="button" value="<=" id="left">
+  <input type="button" value="=>" id="right" onclick="f_right">
+  <script>
+    let arr_pic = []
+    
+    for (i = 0; i < 5; i++) {
+      arr_pic.push(`<div class='smile_pic pic_${i}' id='${i}' onclick='on_main_pic(this)'></div>`)
+    }//заполняю массив изображениями
+    
+    arr_pic.forEach((item) => {
+      roul.innerHTML += item
+    })//заполняю рулет
+    
+    let on_main_pic = (el) => {
+      let index = el.id
+      main_pic.innerHTML = `<div class='big_pic smile_pic pic_${index}' id='${index}' onclick='on_main_pic(this)'></div>`
+    }//по нажатию на картинку, выводим ее на большое изображение
+    
+    
+    left.onclick = function () {//двигаем влево
+      let elem = main_pic.childNodes[0]
+      x = +elem.id
+      if (x > 0) {
+        main_pic.innerHTML = `<div class='big_pic smile_pic pic_${x-1}' id='${x-1}' onclick='on_main_pic(this)'></div>`
+      } else { //eсли закончились, идем в конец
+        main_pic.innerHTML = `<div class='big_pic smile_pic pic_4' id='4' onclick='on_main_pic(this)'></div>`
+      }
+     }
+    
+    right.onclick = function () {//двигаем вправо
+      let elem = main_pic.childNodes[0]
+      x = +elem.id
+      if (x < 4) {
+        main_pic.innerHTML = `<div class='big_pic smile_pic pic_${x+1}' id='${x+1}' onclick='on_main_pic(this)'></div>`
+      } else { //eсли закончились, идем в конец
+        main_pic.innerHTML = `<div class='big_pic smile_pic pic_0' id='0' onclick='on_main_pic(this)'></div>`
+      }
+     }
+    
+
+    
+  </script>
+</body>
+</html>
