@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+  <style>
+    #label {
+      display: block;
+      width: 100px;
+      height: 20px;
+      border: solid 1px #000;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <label for="res" id="label"></label>
+  <input type="button" id="add" value="add" onclick="add()">
+  <input type="button" id="sub" value="sub" onclick="sub()">
+  <input type="button" id="mul" value="mul" onclick="mul()">
+  <input type="button" id="div" value="div" onclick="div()">
+  <input type="button" id="res" value="res" onclick="res()">
+  <input type="button" id="clear" value="clear" onclick="fclear()">
+  <input type="button" id="1" onclick="f1()" value="1">
+  <input type="button" id="2" onclick="f2()" value="2">
+  <input type="button" id="3" onclick="f3()" value="3">
+  <input type="button" id="4" onclick="f4()" value="4">
+  <input type="button" id="5" onclick="f5()" value="5">
+  <input type="button" id="6" onclick="f6()" value="6">
+  <input type="button" id="7" onclick="f7()" value="7">
+  <input type="button" id="8" onclick="f8()" value="8">
+  <input type="button" id="9" onclick="f9()" value="9">
+  <input type="button" id="0" onclick="f0()" value="0">
+  <input type="text" id="text" value="">
+  <script>
+    let f1 = () => text.value += 1
+    let f2 = () => text.value += 2
+    let f3 = () => text.value += 3
+    let f4 = () => text.value += 4
+    let f5 = () => text.value += 5
+    let f6 = () => text.value += 6
+    let f7 = () => text.value += 7
+    let f8 = () => text.value += 8
+    let f9 = () => text.value += 9
+    let f0 = () => text.value += 0
+    
+    let add = () => text.value += "+"
+    let sub = () => text.value += "-"
+    let mul = () => text.value += "*"
+    let div = () => text.value += "/"
+
+    let fclear = () => {
+      text.value = ""
+      label.innerText = ""
+    }
+    
+    let res = () => {
+      let res = 0
+      res = eval(text.value)
+      label.innerText = res
+      return res
+    }
+    
+    
+  </script>
+</body>
+</html>
